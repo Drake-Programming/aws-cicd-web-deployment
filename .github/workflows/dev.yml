@@ -5,7 +5,7 @@ name: cdk deploy
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "dev" ]
 
 jobs:
   build:
