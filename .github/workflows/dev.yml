@@ -5,7 +5,7 @@ name: cdk deploy
 
 on:
   push:
-    branches: [ "dev" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -15,10 +15,9 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - uses: action/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: install AWS CDK
         run: sudo npm i -g aws-cdk
@@ -33,5 +32,5 @@ jobs:
         env:
             AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
             AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+            AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
         run: cdk deploy
